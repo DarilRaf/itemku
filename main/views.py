@@ -8,6 +8,9 @@ from main.models import Item
 # Create your views here.
 def show_main(request):
     items = Item.objects.all()
+    total = 0
+    for item in items:
+        total += item.amount
     context = {
         'name': 'Charger Laptop',
         'amount': '3',
@@ -16,7 +19,8 @@ def show_main(request):
         'power': '19V-3.42A',
         'price': 'Rp. 600.000,00',
         'expiry_date': 'none',
-        'items': items
+        'items': items,
+        'total': total
     }
 
     return render(request, "daftar.html", context)
