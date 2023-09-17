@@ -1,27 +1,65 @@
-<h1>Daftar Belanja Itemku</h1>
+{% extends 'base.html' %}
 
-{% load static %}
-<img src="{% static 'charger.jpg' %}">
+{% block content %}
+    <h1>Daftar Belanja Itemku</h1>
 
-<h5>Nama barang: </h5>
-<p>{{ name }}</p>
+    {% load static %}
+    <img src="{% static 'charger.jpg' %}">
 
-<h5>Jumlah: </h5>
-<p>{{ amount }}</p>
+    <h5>Nama barang: </h5>
+    <p>{{ name }}</p>
 
-<h5>Deskripsi: </h5>
-<p>{{ description }}</p>
+    <h5>Jumlah: </h5>
+    <p>{{ amount }}</p>
 
-<h5>Kategori: </h5>
-<p>{{ category }}</p>
+    <h5>Deskripsi: </h5>
+    <p>{{ description }}</p>
 
-<h5>Power: </h5>
-<p>{{ power }}</p>
+    <h5>Kategori: </h5>
+    <p>{{ category }}</p>
 
-<h5>Harga: </h5>
-<p>{{ price }}</p>
+    <h5>Power: </h5>
+    <p>{{ power }}</p>
 
-<h5>Kadaluarsa: </h5>
-<p>{{ expiry_date }}</p>
+    <h5>Harga: </h5>
+    <p>{{ price }}</p>
 
+    <h5>Kadaluarsa: </h5>
+    <p>{{ expiry_date }}</p>
+
+
+    <table>
+        <tr>
+            <th>Nama</th>
+            <th>Jumlah</th>
+            <th>Deskripsi</th>
+            <th>Kategori</th>
+            <th>Power</th>
+            <th>Harga</th>
+            <th>Tanggal Kadaluarsa</th>
+            <th>Tanggal Ditambahkan</th>
+        </tr>
+    
+        {% for item in items %}
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.amount}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.power}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.expiry_date}}</td>
+                <td>{{item.date_added}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+    <br />
+    
+    <a href="{% url 'main:create_item' %}">
+        <button>
+            Add New Product
+        </button>
+    </a>
+{% endblock content %}
 
