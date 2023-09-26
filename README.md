@@ -1,4 +1,4 @@
-======================TUGAS 2=========================
+======================TUGAS 2===========================
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 -> Langkah awal yaitu dengan menentukan direktori folder untuk memulai proyek yang kemudian folder tersebut diinisiasikan dengan git (git init). Kemudian dilanjut dengan membuat repositori baru pada Github dengan visibilitas public. Setelah itu saya menghubungkan repositori lokal yang telah dibuat tadi dengan repositori di Github dengan menggunakan perintah "git branch -M main" dengan branch bernama "main" pada terminal.Kemudian saya membuat direktori ini sebagai virtual environment agar package dan dependencies pada aplikasi tidak bertabrakan dengan versi lain di komputer, hal tersebut dilakukan dengan perintah "python -m venv env" yang dilanjutkan dengan perintah "env\Scripts\activate.bat" untuk mengaktifkan virtual environment tersebut.
@@ -34,7 +34,7 @@ Untuk MVT, View bertanggung jawab untuk menampilkan data yang diberikan oleh Tem
 MVVM merupakan arsitektur yang memiliki pola lebih umum yang biasanya digunakan oleh pengembang aplikasi berbasis antarmuka pengguna yang lebih kompleks, terutama di dunia JavaScript. ViewModel pada MVVM berfungsi sebagai komponen yang memisahkan logika tampilan dari View.ViewModel mengubah data dari Model menjadi format yang sesuai dengan tampilan dan mengatur komunikasi antara Model dan View. Ini sering digunakan dalam pengembangan aplikasi berbasis UI yang kaya seperti aplikasi web berbasis JavaScript. Kemudian View berfungsi untuk menampilkan data pada user.
 
 
-======================TUGAS 3=========================
+======================TUGAS 3===========================
 
 1. Apa perbedaan antara form POST dan form GET dalam Django?
 Penggunaan metode POST dan GET dalam implementasi form memiliki kegunaan yang berbeda. Cara kerja metode POST adalah dengan mengumpulkan data dari form, melakukan encoding, mengirimkannya ke server, kemudian mendapatkan respon balik dari server. Sementara itu, metode GET mengumpulkan data ke dalam suatu string, dan menggunkannya untuk menyusun suatu URL. Metode POST sebaiknya digunakan apabila request yang diterima dapat membuat perubahan di sistem atau database, sementara metode GET hanya bisa digunakan apabila request tidak akan memberikan perubahan pada sistem. Maka, penggunaan metode POST lebih cocok untuk form password atau form lainnya yang mengandung data sensitif karena metode ini juga dilindungi oleh CSRF protection dari Django. Di sisi lain, metode GET lebih cocok digunakan misalnya untuk web search form, atau form yang berfungsi sebagai pencarian, karena URL yang disusun oleh metode GET lebih mudah untuk direpresentasikan dan juga mudah untuk dibagikan ke user lain.
@@ -112,5 +112,41 @@ XML by ID (id = 1):
 ![Alt text](image-2.png)
 JSON by ID (id = 2):
 ![Alt text](image-1.png)
+
+======================TUGAS 4===========================
+
+1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
+
+`UserCreationForm` adalah salah satu dari banyak formulir bawaan yang disediakan oleh Django, sebuah framework web yang ditulis dalam Python. Formulir ini digunakan untuk membuat formulir pendaftaran pengguna (user registration form) dalam aplikasi web yang menggunakan Django. `UserCreationForm` memudahkan pengembang dalam membuat halaman pendaftaran pengguna dengan cepat, karena sudah mengatur banyak hal terkait pembuatan akun pengguna.
+
+**Kelebihan:**
+
+1. Mudah Digunakan: `UserCreationForm` merupakan bagian dari Django's built-in authentication system, sehingga mudah digunakan dan tidak memerlukan penulisan kode tambahan untuk mengelola pendaftaran pengguna.
+2. Validasi Bawaan: Form ini sudah dilengkapi dengan validasi bawaan untuk memastikan bahwa pengguna memasukkan data yang benar dan sesuai, seperti memeriksa bahwa alamat email adalah unik dan bahwa kata sandi memenuhi persyaratan keamanan.
+3. Kompatibilitas dengan Model Pengguna Bawaan: Form ini berintegrasi dengan model pengguna bawaan Django (`User`), yang memungkinkan Anda untuk menyimpan data pengguna dengan mudah dalam database.
+4. Customizable: Meskipun `UserCreationForm` sudah mencakup sebagian besar fungsi yang diperlukan untuk pendaftaran pengguna, Anda masih dapat menyesuaikannya sesuai dengan kebutuhan proyek Anda dengan menambahkan atau mengubah bidang-bidang yang ada.
+
+**Kekurangan:**
+
+1. Tampilan Standar: `UserCreationForm` hanya menyediakan formulir backend, sehingga Anda masih perlu membuat tampilan depan (frontend) untuk halaman pendaftaran pengguna. Hal ini bisa menjadi pekerjaan tambahan tergantung pada kebutuhan desain Anda.
+2. Kustomisasi Tambahan: Jika proyek Anda memiliki persyaratan pendaftaran pengguna yang sangat khusus, Anda mungkin perlu menulis formulir pendaftaran pengguna kustom dari awal daripada menggunakan `UserCreationForm`, yang dapat menjadi lebih rumit.
+3. Ketergantungan Terhadap Model Bawaan: Jika proyek Anda memerlukan model pengguna yang sangat berbeda dari model `User` bawaan Django, Anda mungkin perlu menulis formulir pendaftaran pengguna kustom dan mengelola logika pendaftaran pengguna sendiri.
+
+2. Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+*Autentikasi* adalah proses verifikasi identitas pengguna, sedangkan *otorisasi* adalah proses menentukan hak akses pengguna setelah autentikasi. Autentikasi memeriksa siapa pengguna tersebut, sementara otorisasi mengatur apa yang dapat mereka lakukan dalam aplikasi. Keduanya penting untuk menjaga keamanan dan kontrol akses dalam aplikasi web.
+
+3. Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
+Cookies dalam konteks aplikasi web adalah file kecil yang disimpan pada perangkat pengguna saat mereka berinteraksi dengan situs web. Django menggunakan cookies untuk mengelola data sesi pengguna dengan cara menyimpan informasi khusus pada cookie, seperti ID sesi, yang digunakan untuk mengidentifikasi pengguna saat mereka berpindah halaman atau berinteraksi dengan aplikasi web. Ini memungkinkan Django untuk melacak dan mempertahankan keadaan sesi pengguna di seluruh permintaan HTTP, yang penting untuk aplikasi yang memerlukan otentikasi dan keadaan sesi pengguna yang aman.
+
+4. Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+Penggunaan cookies dalam pengembangan web memiliki risiko potensial yang harus diwaspadai. Cookies dapat digunakan dengan aman jika diimplementasikan dengan benar, tetapi ada risiko seperti peretasan atau pencurian data sesi jika tidak ada tindakan keamanan yang memadai, seperti enkripsi data atau perlindungan terhadap serangan CSRF (Cross-Site Request Forgery). Oleh karena itu, pengembang web harus berhati-hati dan mematuhi praktik keamanan terbaik saat menggunakan cookies.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+-Pertama yaitu membuat fungsi register pada views.py dan membuat file html baru yang berisi tampilan register bernama register.html kemudian mengatur rute pada urls.py.
+-Kedua sama seperti langkah pertama, tetapi kali ini membuat fungsi login untuk user yang sudah pernah register sebelumnya.
+-Ketiga merupakan langkah yang sama, tetapi ini untuk fungsi logout, dan tidak perlu membuat file html baru untuk logout, instead kita menambahkan tombol logout pada tampilan utama "daftar.html"
+-Langkah berikutnya yaitu dengan merestriksi pengguna yang dapat masuk dengan menambahkan login_required pada views.py
+-Kemudian menambahkan cookies dengan cara memodifikasi kode pada login_user dan meng set cookienya kemudian menambahkan last_login pada context yg ada di fungsi show_main, kemudian menambahkan text tersebut pada tampilan html.
+-Langkah selanjutnya adalah menghubungkan product dengan user dengan memodifikasi models.py pada main dan merubah potongan kode pada views.py spesifically pada fungsi create_item, kemudian mengubah fungsi show_main agar memfilter item sesuai user yg sedang login.
 
 ========================end=============================
