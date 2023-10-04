@@ -1,31 +1,62 @@
 {% extends 'base.html' %}
+{% block meta %}
+<style>
+a {
+    text-decoration: none;
+}
+
+tr:nth-last-child(1) {
+    background-color: aqua;
+    color: red;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    table-layout: fixed;
+}
+
+td, th {
+    border: 1px solid black; /* Menambahkan border ke sel-sel tabel */
+    text-align: center;
+}
+
+td {
+    width: 10em;
+}
+
+.center {
+        position: absolute;
+        top:  50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+      }
+</style>
+{% endblock meta %}
 
 {% block content %}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">User: {{name}}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'main:create_item' %}">Tambahkan Product Baru</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+<div class="center">
     <h1>Daftar Belanja Itemku</h1>
-
-    <!-- {% load static %}
-    <img src="{% static 'charger.jpg' %}">
-
-    <h5>Nama barang: </h5>
-    <p>{{ name }}</p>
-
-    <h5>Jumlah: </h5>
-    <p>{{ amount }}</p>
-
-    <h5>Deskripsi: </h5>
-    <p>{{ description }}</p>
-
-    <h5>Kategori: </h5>
-    <p>{{ category }}</p>
-
-    <h5>Power: </h5>
-    <p>{{ power }}</p>
-
-    <h5>Harga: </h5>
-    <p>{{ price }}</p>
-
-    <h5>Kadaluarsa: </h5>
-    <p>{{ expiry_date }}</p> -->
 
     <h3>
         Kamu menyimpan {{total}} item pada aplikasi Itemku!
@@ -53,6 +84,18 @@
                 <td>{{item.price}}</td>
                 <td>{{item.expiry_date}}</td>
                 <td>{{item.date_added}}</td>
+                <td>
+                    <a href="{% url 'main:edit_item' item.pk %}">
+                        <button>
+                            Edit
+                        </button>
+                    </a>
+                    <a href="{% url 'main:delete_item' item.pk %}">
+                        <button>
+                            Delete
+                        </button>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
     </table>
@@ -60,17 +103,6 @@
     <br />
     
     <h5>Sesi terakhir login: {{ last_login }}</h5>
-
-    <a href="{% url 'main:create_item' %}">
-        <button>
-            Add New Product
-        </button>
-    </a>
-
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
+</div>
 {% endblock content %}
 

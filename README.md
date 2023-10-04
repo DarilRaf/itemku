@@ -115,7 +115,7 @@ JSON by ID (id = 2):
 
 ======================TUGAS 4===========================
 
-1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
+1. *Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?*
 
 `UserCreationForm` adalah salah satu dari banyak formulir bawaan yang disediakan oleh Django, sebuah framework web yang ditulis dalam Python. Formulir ini digunakan untuk membuat formulir pendaftaran pengguna (user registration form) dalam aplikasi web yang menggunakan Django. `UserCreationForm` memudahkan pengembang dalam membuat halaman pendaftaran pengguna dengan cepat, karena sudah mengatur banyak hal terkait pembuatan akun pengguna.
 
@@ -132,16 +132,20 @@ JSON by ID (id = 2):
 2. Kustomisasi Tambahan: Jika proyek Anda memiliki persyaratan pendaftaran pengguna yang sangat khusus, Anda mungkin perlu menulis formulir pendaftaran pengguna kustom dari awal daripada menggunakan `UserCreationForm`, yang dapat menjadi lebih rumit.
 3. Ketergantungan Terhadap Model Bawaan: Jika proyek Anda memerlukan model pengguna yang sangat berbeda dari model `User` bawaan Django, Anda mungkin perlu menulis formulir pendaftaran pengguna kustom dan mengelola logika pendaftaran pengguna sendiri.
 
-2. Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+2. *Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?*
+
 *Autentikasi* adalah proses verifikasi identitas pengguna, sedangkan *otorisasi* adalah proses menentukan hak akses pengguna setelah autentikasi. Autentikasi memeriksa siapa pengguna tersebut, sementara otorisasi mengatur apa yang dapat mereka lakukan dalam aplikasi. Keduanya penting untuk menjaga keamanan dan kontrol akses dalam aplikasi web.
 
-3. Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
+3. *Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?*
+
 Cookies dalam konteks aplikasi web adalah file kecil yang disimpan pada perangkat pengguna saat mereka berinteraksi dengan situs web. Django menggunakan cookies untuk mengelola data sesi pengguna dengan cara menyimpan informasi khusus pada cookie, seperti ID sesi, yang digunakan untuk mengidentifikasi pengguna saat mereka berpindah halaman atau berinteraksi dengan aplikasi web. Ini memungkinkan Django untuk melacak dan mempertahankan keadaan sesi pengguna di seluruh permintaan HTTP, yang penting untuk aplikasi yang memerlukan otentikasi dan keadaan sesi pengguna yang aman.
 
-4. Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+4. *Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?*
+
 Penggunaan cookies dalam pengembangan web memiliki risiko potensial yang harus diwaspadai. Cookies dapat digunakan dengan aman jika diimplementasikan dengan benar, tetapi ada risiko seperti peretasan atau pencurian data sesi jika tidak ada tindakan keamanan yang memadai, seperti enkripsi data atau perlindungan terhadap serangan CSRF (Cross-Site Request Forgery). Oleh karena itu, pengembang web harus berhati-hati dan mematuhi praktik keamanan terbaik saat menggunakan cookies.
 
-5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+5. *Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).*
+
 -Pertama yaitu membuat fungsi register pada views.py dan membuat file html baru yang berisi tampilan register bernama register.html kemudian mengatur rute pada urls.py.
 -Kedua sama seperti langkah pertama, tetapi kali ini membuat fungsi login untuk user yang sudah pernah register sebelumnya.
 -Ketiga merupakan langkah yang sama, tetapi ini untuk fungsi logout, dan tidak perlu membuat file html baru untuk logout, instead kita menambahkan tombol logout pada tampilan utama "daftar.html"
@@ -149,4 +153,33 @@ Penggunaan cookies dalam pengembangan web memiliki risiko potensial yang harus d
 -Kemudian menambahkan cookies dengan cara memodifikasi kode pada login_user dan meng set cookienya kemudian menambahkan last_login pada context yg ada di fungsi show_main, kemudian menambahkan text tersebut pada tampilan html.
 -Langkah selanjutnya adalah menghubungkan product dengan user dengan memodifikasi models.py pada main dan merubah potongan kode pada views.py spesifically pada fungsi create_item, kemudian mengubah fungsi show_main agar memfilter item sesuai user yg sedang login.
 
-========================end=============================
+======================TUGAS 5===========================
+
+1. *Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.*
+
+`Tag Selector (tagname):` Memilih semua elemen dengan tag tertentu. Cocok digunakan saat ingin menerapkan gaya ke semua elemen dengan tag yang sama, seperti mengatur font atau warna latar belakang untuk semua teks p dalam dokumen.
+
+`Class Selector (.classname):` Memilih semua elemen yang memiliki kelas tertentu. Berguna ketika ingin menerapkan gaya ke beberapa elemen dengan kelas yang sama, seperti mengatur warna latar belakang untuk semua elemen dengan kelas "button."
+
+`ID Selector (#idname):` Memilih elemen dengan ID tertentu. Digunakan untuk elemen unik dalam dokumen, seperti header utama. Hanya satu elemen per dokumen boleh memiliki ID yang sama.
+
+2. *Jelaskan HTML5 Tag yang kamu ketahui.*
+
+<header>: Digunakan untuk mendefinisikan header atau bagian atas dokumen.
+<nav>: Menunjukkan bagian navigasi dalam dokumen.
+<br>: Digunakan untuk break
+
+3. *Jelaskan perbedaan antara margin dan padding.*
+
+`Margin:` Margin adalah jarak antara elemen dan elemen lain di sekitarnya. Margin mengatur ruang di luar elemen. Margin elemen tidak memiliki latar belakang atau warna. Margin digunakan untuk mengatur jarak antara elemen dengan elemen lain di sekitarnya.
+
+`Padding:` Padding adalah jarak antara batas elemen dan kontennya. Padding mengatur ruang di dalam elemen. Anda dapat memberikan elemen padding untuk menjaga jarak antara konten elemen dan batasnya.
+
+4. *Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?*
+
+Tailwind CSS: Tailwind adalah framework CSS yang fokus pada konfigurasi menggunakan kelas-kelas CSS yang telah ditentukan sebelumnya. Ini memberikan fleksibilitas besar dalam menyesuaikan tampilan elemen. Cocok untuk proyek-proyek yang membutuhkan desain yang sangat disesuaikan atau proyek yang ingin menghindari gaya bawaan.
+
+Bootstrap: Bootstrap adalah framework CSS yang menyediakan banyak komponen dan gaya bawaan untuk membangun situs web dengan cepat. Ini cocok untuk proyek-proyek yang ingin menghemat waktu dalam pengembangan dan ingin tampilan yang konsisten.
+
+5. *Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).*
+Pertama adalah dengan menambah tombol **edit** dan **delete** dengan menambah fungsinya pada views.py dan me link urlnya dan menambah tombolnya di html. Kemudian saya mendesain halaman login dan main agar elemennya berada di tengah halaman dengan meng centernya di CSS.
