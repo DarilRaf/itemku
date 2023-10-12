@@ -1,6 +1,31 @@
+a {
+  text-decoration: none;
+}
+
+tr:nth-last-child(1) {
+  background-color: aqua;
+  color: red;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  table-layout: fixed;
+}
+
+td, th {
+  border: 1px solid black; /* Menambahkan border ke sel-sel tabel */
+  text-align: center;
+}
+
+td {
+  width: 10em;
+}
+
 .center {
-    margin: auto;
-    width: 50%;
-    border: 3px solid rgb(0, 0, 0);
-    padding: 10px;
-  }
+      position: absolute;
+      top:  50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }

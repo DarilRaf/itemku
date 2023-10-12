@@ -1,108 +1,100 @@
 {% extends 'base.html' %}
+
+{% load static %}
+
 {% block meta %}
-<style>
-a {
-    text-decoration: none;
-}
 
-tr:nth-last-child(1) {
-    background-color: aqua;
-    color: red;
-}
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    text-align: center;
-    table-layout: fixed;
-}
-
-td, th {
-    border: 1px solid black; /* Menambahkan border ke sel-sel tabel */
-    text-align: center;
-}
-
-td {
-    width: 10em;
-}
-
-.center {
-        position: absolute;
-        top:  50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-      }
-</style>
 {% endblock meta %}
 
 {% block content %}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-        <a class="navbar-brand" href="#">User: {{name}}</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'main:create_item' %}">Tambahkan Product Baru</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
-            </li>
-            </ul>
-        </div>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="#">User: {{name}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-current="page">Tambahkan Product Baru</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'main:logout' %}">Logout</a>
+        </li>
+        </ul>
+    </div>
+    </div>
+</nav>
 
-<div class="center">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="col-form-label">Price:</label>
+                        <input type="number" class="form-control" id="price" name="price"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <textarea class="form-control" id="amount" name="amount"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="col-form-label">Category:</label>
+                        <textarea class="form-control" id="category" name="category"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="power" class="col-form-label">Power:</label>
+                        <textarea class="form-control" id="power" name="power"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="expiry_date" class="col-form-label">Expiry Date:</label>
+                        <textarea class="form-control" id="expiry_date" name="expiry_date"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="center; overflow-auto">
     <h1>Daftar Belanja Itemku</h1>
 
     <h3>
         Kamu menyimpan {{total}} item pada aplikasi Itemku!
     </h3>
 
-    <table>
-        <tr>
-            <th>Nama</th>
-            <th>Jumlah</th>
-            <th>Deskripsi</th>
-            <th>Kategori</th>
-            <th>Power</th>
-            <th>Harga</th>
-            <th>Tanggal Kadaluarsa</th>
-            <th>Tanggal Ditambahkan</th>
-        </tr>
+    <div class="row" style="margin-bottom: 10px;" id="product_table">
+
+    </div>
+
     
-        {% for item in items %}
-            <tr>
-                <td>{{item.name}}</td>
-                <td>{{item.amount}}</td>
-                <td>{{item.description}}</td>
-                <td>{{item.category}}</td>
-                <td>{{item.power}}</td>
-                <td>{{item.price}}</td>
-                <td>{{item.expiry_date}}</td>
-                <td>{{item.date_added}}</td>
-                <td>
-                    <a href="{% url 'main:edit_item' item.pk %}">
-                        <button>
-                            Edit
-                        </button>
-                    </a>
-                    <a href="{% url 'main:delete_item' item.pk %}">
-                        <button>
-                            Delete
-                        </button>
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+    <br/>
     
-    <br />
-    
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
+    <h5 id="sesi">Sesi terakhir login: {{ last_login }}</h5>
 </div>
+
+<script src="{% static 'main/js/main.js'%}">
+</script>
+
 {% endblock content %}
 

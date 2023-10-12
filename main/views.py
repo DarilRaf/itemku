@@ -9,6 +9,7 @@ from main.forms import ItemForm
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from main.models import Item
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -109,3 +110,27 @@ def delete_item(request, id):
     item.delete()
     # Kembali ke halaman awal
     return HttpResponseRedirect(reverse('main:show_main'))
+
+def get_product_json(request):
+    product_item = Item.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        description = request.POST.get("description")
+        amount = request.POST.get("amount")
+        date_added = request.POST.get("date_added")
+        category = request.POST.get("category")
+        power = request.POST.get("power")
+        expiry_date = request.POST.get("expiry_date")
+        user = request.user
+
+        new_product = Item(name=name, price=price, description=description, amount=amount, date_added=date_added, category=category, power=power, expiry_date=expiry_date, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()

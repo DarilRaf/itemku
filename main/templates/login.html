@@ -1,16 +1,10 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block meta %}
+    <link rel="stylesheet" href="{% static 'main/css/login.css' %}">
     <title>Login</title>
-    <!-- <link rel="stylesheet" href="customize.css"> -->
-    <style>
-    .center {
-        position: absolute;
-        top:  50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-      }
-      </style>
 {% endblock meta %}
 
 {% block content %}

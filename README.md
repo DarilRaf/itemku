@@ -183,3 +183,20 @@ Bootstrap: Bootstrap adalah framework CSS yang menyediakan banyak komponen dan g
 
 5. *Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).*
 Pertama adalah dengan menambah tombol **edit** dan **delete** dengan menambah fungsinya pada views.py dan me link urlnya dan menambah tombolnya di html. Kemudian saya mendesain halaman login dan main agar elemennya berada di tengah halaman dengan meng centernya di CSS.
+
+======================TUGAS 6===========================
+
+1. *Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.*
+Pada synchronous programming user harus menunggu untuk suatu input selesai diproses sebelum dapat melakukan input/event lainnya. Sementara pada asynchronous programming, user dapat melakukan event meskipun event sebelumnya sedang diproses secara bersamaan, sehingga response dari event akan dikembalikan secara berurutan.
+
+2. *Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.*
+Pada dasarnya, aplikasi event-driven adalah aplikasi yang berjalan berdasarkan serangkaian event atau interaksi yang terjadi dalam lingkungan aplikasi tersebut, yang kemudian diresponse balik oleh server/aplikasi. Contohnya pada tugas ini ialah penggunaan modal yang ditoggle dengan melakukan event menekan tombol "Tambahkan Produk Baru".
+
+3. *Jelaskan penerapan asynchronous programming pada AJAX.*
+Penerapan asynchronous programming pada AJAX diproses dengan metode seperti callback functions, saat mengirim permintaan HTTP, Anda dapat mendefinisikan fungsi callback yang akan dijalankan setelah permintaan selesai. Hal ini memungkinkan aplikasi untuk tetap responsif, sehingga pengguna dapat berinteraksi dengan situs web tanpa harus menunggu permintaan selesai.
+
+4. *Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.*
+Menurut saya Fetch API pada AJAX lebih modern dan ringan jika dibandingkan dengan jQuery, sehingga lebih cocok jika ingin mengembangkan proyek yang efisien. Di lain sisi, jQuery lebih support pada pengembangan web lintas browser, sehingga dapat menangani perbedaan kompatibilitas browser dengan lebih konsisten.
+
+5. *Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).*
+Saya memulai dengan menambahkan fungsi-fungsi yang diperlukan terlebih dahulu pada views.py, yaitu fungsi get_product_json dan add_product_ajax. Kemudian disambungkan di urls.py dan memodifikasi html agar sesuai dengan fungsinya. Saya memanfaatkan Cards untuk menampilkan data-data item dengan dibantu oleh script dari js agar bisa menampilkannya menggunakan AJAX. Terakhir saya menjalankan perintah `"python manage.py collectstatic"` untuk mengambil semua file static yg disatukan di folder static.
