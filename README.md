@@ -202,4 +202,4 @@ Menurut saya Fetch API pada AJAX lebih modern dan ringan jika dibandingkan denga
 Saya memulai dengan menambahkan fungsi-fungsi yang diperlukan terlebih dahulu pada views.py, yaitu fungsi get_product_json dan add_product_ajax. Kemudian disambungkan di urls.py dan memodifikasi html agar sesuai dengan fungsinya. Saya memanfaatkan Cards untuk menampilkan data-data item dengan dibantu oleh script dari js agar bisa menampilkannya menggunakan AJAX. Terakhir saya menjalankan perintah `"python manage.py collectstatic"` untuk mengambil semua file static yg disatukan di folder static.
 
 
-LINK WEBSITE DEPLOYMENT: http://daril-muhammad-tugas.pbp.cs.ui.ac.id/
+LINK WEBSITE DEPLOYMENT: http://daril-muhammad-tugas.pbp.cs.ui.ac.id/ 
