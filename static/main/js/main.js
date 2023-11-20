@@ -1,5 +1,5 @@
 async function getProducts() {
-    return fetch("/get-product").then((res) => res.json())
+    return fetch("/get-product/").then((res) => res.json())
 }
 async function refreshProducts() {
     document.getElementById("product_table").innerHTML = ""
@@ -39,7 +39,7 @@ async function refreshProducts() {
 refreshProducts()
 
 function addProduct() {
-    fetch("/create-ajax", {
+    fetch("/create-ajax/", {
         method: "POST",
         body: new FormData(document.querySelector('#form'))
     }).then(refreshProducts)
